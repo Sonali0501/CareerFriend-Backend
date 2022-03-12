@@ -19,7 +19,7 @@ const educationSchema = new mongoose.Schema({
     end_year:{
         type: Number
     }
-})
+}, { _id: false })
 
 const experienceSchema = new mongoose.Schema({
     organization: {
@@ -36,7 +36,7 @@ const experienceSchema = new mongoose.Schema({
     end_year:{
         type: Number
     }
-})
+}, { _id: false })
 
 const certificationSchema = new mongoose.Schema({
     title: {
@@ -47,7 +47,7 @@ const certificationSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+}, { _id: false })
 
 const skillSchema = new mongoose.Schema({
     name: {
@@ -59,7 +59,7 @@ const skillSchema = new mongoose.Schema({
         required: true,
         enum: ['Beginner', 'Intermediate', 'Expert']
     }
-})
+}, { _id: false })
 
 const feedbackSchema = new mongoose.Schema({
     user_id: {
@@ -73,7 +73,7 @@ const feedbackSchema = new mongoose.Schema({
     description: {
         type: String
     }
-})
+}, { _id: false })
 
 const profileSchema = new mongoose.Schema({
     user_id: {
