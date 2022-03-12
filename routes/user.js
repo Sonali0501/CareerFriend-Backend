@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
 const User = require('../models/user')
+const { authenticate } = require('../helpers')
 
 const secret = process.env.SECRET;
 
