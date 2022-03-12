@@ -15,7 +15,11 @@ con.on('open', () => {
 app.use(express.json())
 
 const userRouter = require('./routes/user')
+const profileRouter = require('./routes/profile')
+const connectionRouter = require('./routes/connection')
 app.use('/user', userRouter)
+app.use('/profile', profileRouter)
+app.use('/connection', connectionRouter)
 
 app.listen(9000, () => {
     console.log('Server Started')
