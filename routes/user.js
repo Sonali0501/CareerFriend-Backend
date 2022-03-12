@@ -92,4 +92,21 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+router.get('/get_mentors', authenticate, async (req, res) => {
+    try {
+        const mentors = await User.find({ type: 'mentor' })
+        res.status(200).json({
+            data: mentors,
+            error: false,
+            message: 'fetched mentors'
+        })
+    } catch(err) {
+        console.log("ERR", err)
+        res.status(500).json({
+            error: true,
+            message: 'Something went wrong'
+        })
+    }
+})
+
 module.exports = router

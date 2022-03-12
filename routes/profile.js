@@ -5,10 +5,9 @@ const { authenticate } = require('../helpers')
 
 router.get('/get_profile', authenticate, async (req,res) => {
     try {
-        console.log('user', req.user)
         const profile = await Profile.find({ user_id: req.user._id })
         res.status(200).json({
-            ...profile,
+            data: profile,
             error: false,
             message: 'profile fetched'
         })
@@ -24,7 +23,6 @@ router.get('/get_profile', authenticate, async (req,res) => {
 router.post('/update_profile', authenticate, async (req, res) => {
     try {
         const user = req.user
-        console.log('User_id', user._id)
         const req_profile = { 
             ...req.body,
             user_id: user._id
@@ -32,7 +30,7 @@ router.post('/update_profile', authenticate, async (req, res) => {
         await Profile.replaceOne({ user_id: user._id }, req_profile, { upsert: true })
         const profile = await Profile.findOne({ user_id: user._id })
         res.status(200).json({
-            ...profile._doc,
+            data: profile._doc,
             error: false,
             message: 'Profile Created'
         })
