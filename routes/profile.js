@@ -7,7 +7,7 @@ router.get('/get_profile', authenticate, async (req,res) => {
     try {
         const profile = await Profile.find({ user_id: req.user._id })
         res.status(200).json({
-            data: profile,
+            data: { ...profile[0]._doc, ...req.user._doc},
             error: false,
             message: 'profile fetched'
         })
